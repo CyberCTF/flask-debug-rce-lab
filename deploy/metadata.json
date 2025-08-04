@@ -1,0 +1,14 @@
+{
+  "lab_name": "flask-debug-rce-lab",
+  "lab_title": "Flask Debug Information Disclosure",
+  "lab_description": "A vulnerable e-commerce application that exposes Flask version information through detailed error messages when debug mode is enabled",
+  "lab_readme": "# Flask Debug Information Disclosure\n\nA vulnerable e-commerce application running Flask with debug mode enabled that exposes sensitive framework version information through detailed error messages.\n\n## Quick Start\n\n```bash\ndocker pull cyberctf/flask-debug-rce-lab:latest\ndocker run -p 3206:3206 cyberctf/flask-debug-rce-lab:latest\n```\n\nAccess the application at: http://localhost:3206\n\n## Vulnerability Details\n\nThis lab demonstrates how Flask applications with debug mode enabled can leak sensitive information including framework versions through detailed error messages. The application contains several endpoints that can trigger errors, exposing Flask version information in the debug output.\n\n## Reporting Issues\n\nIf you encounter any issues, please report them on our GitHub repository.\n\n---\n\n*This is a deliberately vulnerable lab designed solely for educational purposes.*",
+  "element_to_proof": "Flask version information exposed in debug error messages",
+  "final_flag_info": "Flask==3.0.0",
+  "walkthrough": "1. Navigate to the products page 2. Try accessing an invalid product ID like /product/999 3. Observe the detailed Flask error message containing version information 4. Alternatively, submit malformed data to the order form to trigger ValueError with debug info",
+  "vulnerability_type": "Information Disclosure",
+  "framework": "Flask",
+  "technology_stack": ["Python", "Flask", "SQLite", "HTML", "TailwindCSS"],
+  "difficulty": "Beginner",
+  "category": "Web Security"
+} 

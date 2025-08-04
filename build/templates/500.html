@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Server Error - TechStore{% endblock %}
+
+{% block content %}
+<div class="min-h-[60vh] flex items-center justify-center">
+    <div class="text-center max-w-2xl mx-auto">
+        <div class="bg-black/20 backdrop-blur-md border border-red-500/20 rounded-2xl p-12">
+            <div class="text-8xl mb-6">⚠️</div>
+            <h1 class="text-4xl font-bold text-red-400 mb-4">Server Error</h1>
+            <p class="text-gray-400 text-lg mb-8">
+                Something went wrong while processing your request. Our technical team has been notified.
+            </p>
+            <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4 mb-8">
+                <p class="text-sm text-red-300">
+                    If you continue to experience issues, please contact our support team with the error details.
+                </p>
+            </div>
+            <div class="space-y-4">
+                <a href="{{ url_for('home') }}" 
+                   class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    Back to Home
+                </a>
+                <div class="mx-4"></div>
+                <button onclick="window.location.reload()" 
+                        class="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-white rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    Try Again
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product[1] }} - TechStore{% endblock %}
+{% block description %}{{ product[3] }}{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <!-- Back Button -->
+    <div class="mb-8">
+        <a href="{{ url_for('products') }}" class="inline-flex items-center text-gray-400 hover:text-white transition-colors">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Back to Products
+        </a>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Product Image -->
+        <div class="bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-8 h-96 flex items-center justify-center">
+            {% if product[4] == 'Electronics' %}
+                <div class="text-9xl">💻</div>
+            {% else %}
+                <div class="text-9xl">🪑</div>
+            {% endif %}
+        </div>
+
+        <!-- Product Details -->
+        <div class="space-y-6">
+            <div>
+                <span class="px-3 py-1 bg-blue-600/20 text-blue-300 text-sm rounded-full border border-blue-500/30 mb-4 inline-block">
+                    {{ product[4] }}
+                </span>
+                <h1 class="text-4xl font-bold text-white mb-4">{{ product[1] }}</h1>
+                <div class="text-3xl font-bold text-green-400 mb-6">
+                    ${{ "%.2f"|format(product[2]) }}
+                </div>
+            </div>
+
+            <div class="bg-black/20 backdrop-blur-md border border-white/10 rounded-xl p-6">
+                <h3 class="text-xl font-bold text-white mb-3">Product Description</h3>
+                <p class="text-gray-300 leading-relaxed">{{ product[3] }}</p>
+            </div>
+
+            <div class="bg-black/20 backdrop-blur-md border border-white/10 rounded-xl p-6">
+                <h3 class="text-xl font-bold text-white mb-3">Availability</h3>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                        <span class="text-gray-300">In Stock</span>
+                    </div>
+                    <div class="text-gray-400">
+                        {{ product[5] }} units available
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Form -->
+            <div class="bg-black/20 backdrop-blur-md border border-white/10 rounded-xl p-6">
+                <h3 class="text-xl font-bold text-white mb-4">Place Order</h3>
+                <form action="{{ url_for('place_order') }}" method="POST" class="space-y-4">
+                    <input type="hidden" name="product_id" value="{{ product[0] }}">
+                    
+                    <div>
+                        <label for="customer_name" class="block text-sm font-semibold text-gray-300 mb-2">
+                            Customer Name
+                        </label>
+                        <input type="text" id="customer_name" name="customer_name" required
+                               class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
+                               placeholder="Enter your full name">
+                    </div>
+                    
+                    <div>
+                        <label for="quantity" class="block text-sm font-semibold text-gray-300 mb-2">
+                            Quantity
+                        </label>
+                        <div class="flex items-center space-x-3">
+                            <button type="button" onclick="decreaseQuantity()" 
+                                    class="bg-gray-700 text-white w-10 h-10 rounded-lg hover:bg-gray-600 transition-colors">
+                                -
+                            </button>
+                            <input type="number" id="quantity" name="quantity" min="1" max="{{ product[5] }}" value="1" required
+                                   class="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white text-center focus:border-blue-500 focus:outline-none">
+                            <button type="button" onclick="increaseQuantity()" 
+                                    class="bg-gray-700 text-white w-10 h-10 rounded-lg hover:bg-gray-600 transition-colors">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit" 
+                                class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-bold text-lg">
+                            Add to Order
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function increaseQuantity() {
+    const input = document.getElementById('quantity');
+    const max = parseInt(input.getAttribute('max'));
+    const current = parseInt(input.value);
+    if (current < max) {
+        input.value = current + 1;
+    }
+}
+
+function decreaseQuantity() {
+    const input = document.getElementById('quantity');
+    const current = parseInt(input.value);
+    if (current > 1) {
+        input.value = current - 1;
+    }
+}
+</script>
+{% endblock %}

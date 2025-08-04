@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}TechStore - Premium Electronics & Furniture{% endblock %}
+{% block description %}Professional-grade electronics and furniture for modern workspaces{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="min-h-[80vh] flex items-center justify-center">
+    <div class="text-center max-w-6xl mx-auto">
+        <div class="mb-12">
+            <h1 class="text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent mb-6">
+                Premium Electronics & Furniture
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Elevate your workspace with cutting-edge technology and ergonomic furniture designed for modern professionals
+            </p>
+        </div>
+        
+        <div class="mb-16">
+            <a href="{{ url_for('products') }}" class="inline-flex items-center px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
+                Browse Products
+                <svg class="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-black/20 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-2xl hover:bg-black/30 transition-all duration-300">
+                <div class="text-4xl mb-6">💻</div>
+                <h3 class="text-2xl font-bold mb-4 text-blue-300">Premium Electronics</h3>
+                <p class="text-gray-400 leading-relaxed">High-performance laptops, monitors, and accessories for professional productivity</p>
+            </div>
+            
+            <div class="bg-black/20 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-2xl hover:bg-black/30 transition-all duration-300">
+                <div class="text-4xl mb-6">🪑</div>
+                <h3 class="text-2xl font-bold mb-4 text-purple-300">Ergonomic Furniture</h3>
+                <p class="text-gray-400 leading-relaxed">Comfort-focused chairs and desks designed for long working sessions</p>
+            </div>
+            
+            <div class="bg-black/20 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-2xl hover:bg-black/30 transition-all duration-300">
+                <div class="text-4xl mb-6">🚚</div>
+                <h3 class="text-2xl font-bold mb-4 text-green-300">Fast Delivery</h3>
+                <p class="text-gray-400 leading-relaxed">Quick and secure shipping for all your professional equipment needs</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="mt-20 text-center">
+    <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 backdrop-blur-md rounded-2xl p-12 border border-white/10">
+        <h2 class="text-3xl font-bold mb-4">Ready to upgrade your workspace?</h2>
+        <p class="text-gray-300 mb-8 text-lg">Discover our curated selection of premium products</p>
+        <a href="{{ url_for('products') }}" class="inline-flex items-center px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+            View All Products
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </a>
+    </div>
+</div>
+{% endblock %} 
